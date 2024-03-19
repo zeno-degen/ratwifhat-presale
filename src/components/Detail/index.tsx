@@ -165,17 +165,19 @@ const Detail = () => {
               </p>
             )}
             <div className="w-full flex items-center justify-between">
-              <div
-                className={`rounded-sm text-[13px] ${
-                  payAmount === 0
-                    ? "bg-[#f5f5f5] text-[#00000040] border-[1px]  cursor-not-allowed"
-                    : "bg-[#F95192] text-white py-[5px] cursor-pointer"
-                }  px-2 py-1 transition-all duration-300`}
-                onClick={() => payAmount !== 0 && handleBuyFunc()}
-              >
-                Buy with C2FLR
-              </div>
-              {isClaimable && userData && (
+              {address && (
+                <div
+                  className={`rounded-sm text-[13px] ${
+                    payAmount === 0
+                      ? "bg-[#f5f5f5] text-[#00000040] border-[1px]  cursor-not-allowed"
+                      : "bg-[#F95192] text-white py-[5px] cursor-pointer"
+                  }  px-2 py-1 transition-all duration-300`}
+                  onClick={() => payAmount !== 0 && handleBuyFunc()}
+                >
+                  Buy with C2FLR
+                </div>
+              )}
+              {isClaimable && userData && address && (
                 <div
                   className={`rounded-sm text-[13px] ${
                     !isClaimableForuser
