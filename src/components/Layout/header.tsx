@@ -8,9 +8,9 @@ const Header = () => {
   const router = useRouter();
   return (
     <>
-      <div className="w-full xl:flex items-center justify-center border-b border-black border-opacity-5 p-1">
+      <div className="w-full xl:flex items-center justify-center border-b border-black border-opacity-5 p-1 -z-10">
         <div className="xl:w-[1300px] w-auto flex items-center justify-between px-3">
-          <div className="flex items-center justify-center top-[24px] -z-[3] p-1 gap-3">
+          <div className="flex items-center justify-center top-[24px] p-1 gap-3">
             <img
               src="/imgs/logo.png"
               className="w-[45px] h-[45px] border-black rounded-full border-opacity-10 border-[1px]"

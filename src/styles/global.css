@@ -8,11 +8,21 @@ body {
   margin: 0;
   overflow-x: hidden;
   position: relative;
-  background-color: #F8FAFC;
+  background-color: #f8f8f8;
   font-family: "Archivo", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 
 #nprogress {
   pointer-events: none;
