@@ -25,9 +25,9 @@ import {
 import { publicProvider } from "wagmi/providers/public";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { ModalProvider } from "../contexts/ModalContext";
 import { Layout } from "../components/Layout/layout";
 import { ToastContainer } from "react-toastify";
+import GetTokenDataProvider from "../contexts/TokenDataContext";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [flareTestnet],
@@ -79,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         coolMode
       >
         <ToastContainer style={{ fontSize: 14 }} />
-        <ModalProvider>
+        <GetTokenDataProvider>
           <Head>
             <link rel="icon" type="image/x-icon" href="/imgs/logo.png" />
             <title>RatWifHat Token Buy</title>
@@ -87,7 +87,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ModalProvider>
+        </GetTokenDataProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );
