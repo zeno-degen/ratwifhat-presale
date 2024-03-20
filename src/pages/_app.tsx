@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ToastContainer style={{ fontSize: 14 }} />
         <GetTokenDataProvider>
           <Head>
-            <link rel="icon" type="image/x-icon" href="/imgs/logo.png" />
+            <link rel="icon" type="image/x-icon" href="/imgs/logo.jpg" />
             <title>RatWifHat Token Buy</title>
           </Head>
           <Layout>
