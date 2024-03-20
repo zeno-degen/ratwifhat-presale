@@ -1,22 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
+import { flareTestnet } from "viem/chains";
+import { ethers } from "ethers";
 import { ClassicSpinner } from "react-spinners-kit";
+import { TbWorld, TbBrandTwitter, TbBrandTelegram } from "react-icons/tb";
 import { errorAlert, successAlert, warningAlert } from "../toastGroup";
 import Countdown from "../countDown";
-import { ethers } from "ethers";
-import { flareTestnet } from "viem/chains";
 import { useRate } from "../../hooks/use-Rat";
 import { GetTokenDataContext } from "../../contexts/TokenDataContext";
+import Link from "next/link";
+import { SITE_LINK, TELEGRAM_LINK, TWITTER_LINK } from "../../config";
+
 const Detail = () => {
-  const { isClaimable, userData, getInfo, isClaimableForuser } =
-    useContext(GetTokenDataContext);
+  const {
+    isClaimable,
+    isBuyState,
+    userData,
+    getInfo,
+    isClaimableForuser,
+    ethBalanceOfContract,
+  } = useContext(GetTokenDataContext);
   const { payWithEth, claimToken } = useRate();
   const { address } = useAccount();
   const [balance, setBalance] = useState(0); // Initialize with a default value
   const [payAmount, setPayAmount] = useState(0);
   const [loading, setLoading] = useState(false);
 
+  const showClaimNoteState =
+    userData &&
+    address &&
+    userData[0]?.canClaimAmount !== undefined &&
+    userData[0]?.canClaimAmount !== 0;
+  const showclaimBtnState = isClaimable && userData && address;
   const result = useBalance({
     address: address,
     chainId: flareTestnet.id,
@@ -91,8 +107,134 @@ const Detail = () => {
   return (
     <>
       <div className="w-full flex flex-col md:flex-row items-start justify-center gap-[30px]">
-        <div className="lg:w-[calc(100%-370px)] md:w-1/2 w-full bg-white min-h-[10vh] rounded-md p-5">
-          <h1 className="text-lg uppercase font-bold">About</h1>
+        <div className="lg:w-[370px] md:w-1/2 w-full flex flex-col gap-4 p-2 relative">
+          <div
+            className="border p-4 shadow-sm text-sm flex items-center gap-4 border-yellow-400 bg-yellow-400 text-neutral-700 bg-opacity-20
+          rounded-lg"
+          >
+            <div className="break-words font-semibold text-[16px]">
+              <div>The users can claim after presale!</div>
+            </div>
+          </div>
+          <div className="w-full bg-white min-h-[20vh] rounded-lg p-4 flex flex-col gap-2 bg-opacity-30 relative">
+            <img
+              src="/imgs/bg2.jpg"
+              className="absolute bottom-0 right-0 top-0 left-0 -z-50 rounded-lg h-full w-full object-cover opacity-10"
+              alt=""
+            />
+            <div>
+              <Countdown timestamp={1711992869 * 1000} />
+            </div>
+            <div className="relative w-full bg-gray-200 rounded-full mt-5">
+              <div
+                className="absolute top-0 h-3 rounded-full shim-green"
+                style={{ width: (ethBalanceOfContract * 100) / 30 }}
+              />
+            </div>
+            <div className="w-full flex items-center justify-between text-[12px] font-bold text-gray-700">
+              <p>{ethBalanceOfContract.toFixed(2)} C2FLR</p>
+              <p>30 C2FLR</p>
+            </div>
+
+            <div className="text-[15px] mt-6 text-gray-700 font-bold">
+              Amount (Max:
+              <span className="text-[#E61A59]">
+                {balance.toFixed(2) + "C2FLR"}
+              </span>
+              )
+            </div>
+            <div
+              className="w-full flex items-center justify-between border-[1px] border-black
+           border-opacity-10 rounded-lg p-2 gap-4"
+            >
+              <input
+                className="w-full outline-none text-[16px] bg-transparent h-full text-gray-700"
+                placeholder="0"
+                type="number"
+                onChange={(e) =>
+                  Number(e.target.value) > Number((balance - 0.01).toFixed(3))
+                    ? setPayAmount(Number((balance - 0.01).toFixed(3)))
+                    : setPayAmount(Number(e.target.value))
+                }
+                value={payAmount !== 0 ? payAmount : ""}
+              />
+              <div
+                className="text-[#E61A59] text-[16px] cursor-pointer"
+                onClick={() =>
+                  setPayAmount(Number((balance - 0.01).toFixed(3)))
+                }
+              >
+                Max
+              </div>
+            </div>
+            {payAmount !== 0 && (
+              <p className="text-[14px] text-blue-500 duration-300 transition-all">
+                You will receive {(payAmount * 100).toLocaleString()} TRWH
+              </p>
+            )}
+            <div className="w-full flex items-center justify-between mt-3 gap-5">
+              {address && isBuyState && (
+                <button
+                  className={`rounded-lg text-[13.1px] w-1/2 ${
+                    payAmount === 0
+                      ? "bg-[#d5d3d368] text-[#00000040] border-[1px] border-[#f9519138] cursor-not-allowed rounded-lg py-2"
+                      : "bg-[#f95191ec] text-white py-[10px] cursor-pointer rounded-lg"
+                  }  px-2 py-1 transition-all duration-300`}
+                  onClick={() => payAmount !== 0 && handleBuyFunc()}
+                >
+                  Buy with C2FLR
+                </button>
+              )}
+              <>
+                {showclaimBtnState && (
+                  <div
+                    className={`rounded-lg text-[13px] w-1/2 ${
+                      !isClaimableForuser
+                        ? "bg-[#d5d3d368] text-[#00000040] border-[1px] border-[#57ad385a] cursor-not-allowed rounded-lg py-2"
+                        : "border-[#57ad38] bg-[#57ad38] text-white py-[10px] cursor-pointer rounded-lg"
+                    }  px-2 py-1 transition-all duration-300 text-center`}
+                    onClick={() => isClaimableForuser && handleClaimFunc()}
+                  >
+                    Claim Now
+                  </div>
+                )}
+              </>
+            </div>
+          </div>
+          {showClaimNoteState && (
+            <div
+              className="border p-4 shadow-sm text-sm flex items-center gap-4 border-[#57ad38] bg-[#57ad38] text-neutral-700 bg-opacity-20
+          rounded-lg"
+            >
+              <div className="break-words font-semibold text-[16px]">
+                <div>
+                  You can claim {userData[0]?.canClaimAmount} TRWH{" "}
+                  {!showclaimBtnState && "after presale"}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="lg:w-[calc(100%-370px)] relative md:w-1/2 w-full bg-white bg-opacity-30 min-h-[10vh] rounded-lg p-5">
+          <img
+            alt=""
+            src="/imgs/bg1.jpg"
+            className="absolute bottom-0 right-0 top-0 left-0 -z-50 rounded-lg h-full w-full object-cover opacity-10"
+          />
+          <div className="flex items-center justify-start gap-3">
+            <h1 className="text-2xl uppercase font-bold text-gray-700">
+              About
+            </h1>
+            <a href={SITE_LINK} target="_blank" rel="referrer">
+              <TbWorld color="#f95191ec" size={22} />
+            </a>
+            <a href={TWITTER_LINK} target="_blank" rel="referrer">
+              <TbBrandTwitter color="#f95191ec" size={22} />
+            </a>
+            <a href={TELEGRAM_LINK} target="_blank" rel="referrer">
+              <TbBrandTelegram color="#f95191ec" size={22} />
+            </a>
+          </div>
           <div className="flex flex-col gap-5 mt-5">
             <p className="text-[15px]">
               {` $RWH WITH 100 BILLION RWH TOKENS READY TO INFEST THE MARKET, we're
@@ -117,88 +259,17 @@ const Detail = () => {
               </p>
             </div>
           </div>
-          <h1 className="text-lg uppercase mt-5 font-bold">Roadmap</h1>
-        </div>
-        <div className="lg:w-[370px] md:w-1/2 w-full flex flex-col gap-4 p-2">
-          <div className="border p-4 rounded-sm shadow-sm text-sm flex items-center gap-4 border-yellow-400 bg-yellow-50 text-neutral-700">
-            <div className="flex-1">
-              <div className="font-semibold text-md"></div>
-              <div className="break-words font-semibold">
-                <div>The users can claim after presale!</div>
-              </div>
-            </div>
-          </div>
-          <div className="w-full bg-white min-h-[20vh] rounded-md p-4 flex flex-col gap-2">
-            <Countdown timestamp={1710982869 * 1000} />
-            <p className="text-[14px] mt-6">
-              Amount (Max:
-              <span className="text-[#E61A59]">
-                {balance.toFixed(2) + "C2FLR"}
-              </span>
-              )
-            </p>
-            <div
-              className="w-full flex items-center justify-between border-[1px] border-black
-           border-opacity-20 rounded-sm p-1 gap-4"
-            >
-              <input
-                className="w-full outline-none text-[14px]"
-                placeholder="0"
-                type="number"
-                onChange={(e) =>
-                  Number(e.target.value) > Number((balance - 0.01).toFixed(3))
-                    ? setPayAmount(Number((balance - 0.01).toFixed(3)))
-                    : setPayAmount(Number(e.target.value))
-                }
-                value={payAmount !== 0 ? payAmount : ""}
-              />
-              <div
-                className="text-[#E61A59] text-[16px] cursor-pointer"
-                onClick={() => setPayAmount(Number(balance))}
-              >
-                Max
-              </div>
-            </div>
-            {payAmount !== 0 && (
-              <p className="text-[12px] text-blue-400 duration-300 transition-all">
-                You will receive {payAmount.toLocaleString()} TRWH
-              </p>
-            )}
-            <div className="w-full flex items-center justify-between">
-              {address && (
-                <div
-                  className={`rounded-sm text-[13px] ${
-                    payAmount === 0
-                      ? "bg-[#f5f5f5] text-[#00000040] border-[1px]  cursor-not-allowed"
-                      : "bg-[#F95192] text-white py-[5px] cursor-pointer"
-                  }  px-2 py-1 transition-all duration-300`}
-                  onClick={() => payAmount !== 0 && handleBuyFunc()}
-                >
-                  Buy with C2FLR
-                </div>
-              )}
-              {isClaimable && userData && address && (
-                <div
-                  className={`rounded-sm text-[13px] ${
-                    !isClaimableForuser
-                      ? "bg-[#f5f5f5] text-[#00000040] border-[1px]  cursor-not-allowed"
-                      : "bg-[#F95192] text-white py-[5px] cursor-pointer"
-                  }  px-2 py-1 transition-all duration-300`}
-                  onClick={() => isClaimableForuser && handleClaimFunc()}
-                >
-                  Claim Now
-                </div>
-              )}
-            </div>
-          </div>
+          <h1 className="text-2xl uppercase mt-5 font-bold text-gray-700">
+            Roadmap
+          </h1>
         </div>
       </div>
       {loading && (
         <div
-          className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black bg-opacity-30 backdrop-blur-sm duration-300
+          className="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-[#1e1e1ee1] backdrop-blur-2xl duration-300
       transition-all"
         >
-          <ClassicSpinner color="#F95192" />
+          <ClassicSpinner color="#E61A59" />
         </div>
       )}
     </>

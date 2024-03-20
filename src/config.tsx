@@ -15,4 +15,8 @@ export const DEFAULT_GAS = BigInt("30000000");
 export const DEFAULT_GAS_PRICE = BigInt("2000000000000");
 
 export const TOKEN_AIRDROP_CONTRACT_ADDR =
-  "0x6C08C85125024211f1321674De586A532D9AcCf7";
+  "0x118FB60b0C4F4691b62903E9137E1D356207B084";
+
+export const SITE_LINK = "https://ratwifhat.xyz/";
+export const TWITTER_LINK = "https://twitter.com/Ratwifcoin";
+export const TELEGRAM_LINK = "https://t.me/ratwifcoin";
