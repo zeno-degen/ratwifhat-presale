@@ -10,8 +10,6 @@ body {
   position: relative;
   background-color: #f8f8f8;
 font-family: "Schoolbell", cursive;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 input[type=number]::-webkit-inner-spin-button,
