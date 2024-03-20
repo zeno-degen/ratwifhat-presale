@@ -261,27 +261,42 @@ const Detail = () => {
             $ZOINK Token Roadmap
           </h1>
           <p className="text-[15px] mt-4">
-            {`Phase 1: Launch Preparation Finalize Tokenomics: Complete the
+            <strong className="text-[16px]">
+              {` ✅ Phase 1: Launch Preparation Finalize Tokenomics:`}
+              <br />
+            </strong>
+            {`Complete the
               distribution plan for the total supply of 100 Billion $ZOINK tokens.
               Set Up Presale on dApp: Announce and prepare for the presale event,
               exclusively on our Twitter account.`}
           </p>
           <p className="text-[15px] mt-2">
-            {`Phase 2: Presale Kickoff
-              Presale Duration: Launch a 48-hour presale event with 50% of the total supply allocated.
+            <strong className="text-[16px]">
+              {`✅ Phase 2: Presale Kickoff Presale Duration:`}
+              <br />
+            </strong>
+            {`Launch a 48-hour presale event with 50% of the total supply allocated.
               Presale Terms: Exchange Rate: 1 FLR = 500 $ZOINK.
               Community Engagement: Increase awareness and participation through targeted
               social media campaigns.`}
           </p>
           <p className="text-[15px] mt-2">
-            {`Phase 3: Post-Presale Actions
-              Token Distribution: Distribute $ZOINK tokens to presale participants within 24 hours after the presale ends.
+            <strong className="text-[16px]">
+              {`✅ Phase 3: Post-Presale Actions
+              Token Distribution: `}
+              <br />
+            </strong>
+            {`Distribute $ZOINK tokens to presale participants within 24 hours after the presale ends.
               Liquidity Addition: Add and lock liquidity on a leading DEX to ensure smooth trading experiences.
               Burn Unsold Tokens: Burn any unsold tokens from the presale to maintain value for early adopters.`}
           </p>
           <p className="text-[15px] mt-2">
-            {`Phase 4: Airdrop & Community Building
-              Airdrop Snapshot: Take a snapshot 1 hour before the presale goes live to identify eligible Fomo Mofos NFT holders.
+            <strong className="text-[16px]">
+              {`✅ Phase 4: Airdrop & Community Building
+              Airdrop Snapshot: `}
+              <br />
+            </strong>
+            {`Take a snapshot 1 hour before the presale goes live to identify eligible Fomo Mofos NFT holders.
               Airdrop Distribution: Begin distributing 1 Million $ZOINK per NFT, disbursed in 100k monthly installments over 10 months.
               Engage & Expand: Launch community engagement initiatives and giveaways to strengthen and grow the $ZOINK community.`}
           </p>
