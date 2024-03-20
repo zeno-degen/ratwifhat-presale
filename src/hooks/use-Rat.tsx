@@ -26,6 +26,21 @@ export function useRate() {
     }
   };
 
+  const isAvailableTobuy = async () => {
+    try {
+      const contract: any = getContract({
+        address: TOKEN_AIRDROP_CONTRACT_ADDR as `0x${string}`,
+        abi: TOKEN_AIRDROP_CONTRACT_ABI as Abi,
+      });
+      const res = await contract.read.isAvailableTobuy({
+        args: [],
+      });
+      return res;
+    } catch (error) {
+      return { isError: true, msg: error };
+    }
+  };
+
   const getUserData = async (address: string) => {
     try {
       const contract: any = getContract({
@@ -72,6 +87,7 @@ export function useRate() {
 
   return {
     isTokenClaimable,
+    isAvailableTobuy,
     getUserData,
     payWithEth,
     claimToken,

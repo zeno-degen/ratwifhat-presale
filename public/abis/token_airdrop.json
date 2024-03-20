@@ -70,6 +70,11 @@
                         "internalType": "uint256"
                     },
                     {
+                        "type": "uint256",
+                        "name": "canClaimAmount",
+                        "internalType": "uint256"
+                    },
+                    {
                         "type": "bool",
                         "name": "claimedState",
                         "internalType": "bool"
@@ -109,6 +114,19 @@
                 "internalType": "bool"
             }
         ],
+        "name": "isAvailableTobuy",
+        "inputs": []
+    },
+    {
+        "type": "function",
+        "stateMutability": "view",
+        "outputs": [
+            {
+                "type": "bool",
+                "name": "",
+                "internalType": "bool"
+            }
+        ],
         "name": "isTokenClaimable",
         "inputs": []
     },
@@ -134,6 +152,19 @@
     },
     {
         "type": "function",
+        "stateMutability": "view",
+        "outputs": [
+            {
+                "type": "uint256",
+                "name": "",
+                "internalType": "uint256"
+            }
+        ],
+        "name": "percentTobuy",
+        "inputs": []
+    },
+    {
+        "type": "function",
         "stateMutability": "nonpayable",
         "outputs": [],
         "name": "setClaimableTIme",
@@ -141,6 +172,19 @@
             {
                 "type": "uint256",
                 "name": "_claimableTime",
+                "internalType": "uint256"
+            }
+        ]
+    },
+    {
+        "type": "function",
+        "stateMutability": "nonpayable",
+        "outputs": [],
+        "name": "setPercentToBuy",
+        "inputs": [
+            {
+                "type": "uint256",
+                "name": "_percentTobuy",
                 "internalType": "uint256"
             }
         ]
@@ -176,6 +220,19 @@
         "stateMutability": "view",
         "outputs": [
             {
+                "type": "uint256",
+                "name": "",
+                "internalType": "uint256"
+            }
+        ],
+        "name": "totalEthAmount",
+        "inputs": []
+    },
+    {
+        "type": "function",
+        "stateMutability": "view",
+        "outputs": [
+            {
                 "type": "address",
                 "name": "walletAddress",
                 "internalType": "address"
@@ -183,6 +240,11 @@
             {
                 "type": "uint256",
                 "name": "ethPaidAmount",
+                "internalType": "uint256"
+            },
+            {
+                "type": "uint256",
+                "name": "canClaimAmount",
                 "internalType": "uint256"
             },
             {

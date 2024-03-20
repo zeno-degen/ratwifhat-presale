@@ -69,8 +69,8 @@ const WalletConnectBtn = () => {
                     <button
                       onClick={openConnectModal}
                       type="button"
-                      className="text-black text-[13px] font-normal uppercase bg-transparent px-[10px] py-[13px]
-                       rounded-md border-[1px] border-black border-opacity-10"
+                      className="text-white font-bold text-[13px] uppercase bg-gradient-to-r from-pink-500 to-pink-500 px-[10px] py-[13px]
+                       rounded-md"
                     >
                       Connect Wallet
                     </button>
@@ -90,8 +90,8 @@ const WalletConnectBtn = () => {
                     <button
                       onClick={openAccountModal}
                       type="button"
-                      className="text-black text-[14px] font-normal uppercase bg-transparent px-[10px] py-[5px] gap-2
-                      rounded-md border-[1px] border-black border-opacity-10 flex items-center justify-between"
+                      className="text-black font-semibold text-[14px] uppercase bg-transparent px-[10px] py-[3px] gap-2
+                      rounded-lg border-[1.5px] border-pink-500 border-opacity-50 flex items-center justify-between"
                     >
                       <img
                         alt={chain.name ?? "Chain icon"}
@@ -104,7 +104,7 @@ const WalletConnectBtn = () => {
                             "..." +
                             account.displayName.slice(-4)}
                         </span>
-                        <span className="text-[#E61A59]">
+                        <span className="text-[#E61A59] font-bold">
                           {balance.toFixed(2)} C2FLR
                         </span>
                       </div>
