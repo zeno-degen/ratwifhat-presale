@@ -14,6 +14,7 @@ export const IPFS_IMG_URL =
 export const DEFAULT_GAS = BigInt("30000000");
 export const DEFAULT_GAS_PRICE = BigInt("2000000000000");
 export const BUY_AVAIABLE_PERCENT = 50;
+export const TOTAL_ETH_AMOUNT = 30;
 export const TOKEN_AIRDROP_CONTRACT_ADDR =
   "0xfCB4643a8f51c937175166E4e85Df7Add77Db115";
 

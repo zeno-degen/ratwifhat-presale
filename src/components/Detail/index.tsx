@@ -10,7 +10,12 @@ import Countdown from "../countDown";
 import { useRate } from "../../hooks/use-Rat";
 import { GetTokenDataContext } from "../../contexts/TokenDataContext";
 import Link from "next/link";
-import { SITE_LINK, TELEGRAM_LINK, TWITTER_LINK } from "../../config";
+import {
+  SITE_LINK,
+  TELEGRAM_LINK,
+  TOTAL_ETH_AMOUNT,
+  TWITTER_LINK,
+} from "../../config";
 
 const Detail = () => {
   const {
@@ -128,7 +133,9 @@ const Detail = () => {
             <div className="relative w-full bg-gray-200 rounded-full mt-5">
               <div
                 className="absolute top-0 h-3 rounded-full shim-green"
-                style={{ width: (ethBalanceOfContract * 100) / 30 }}
+                style={{
+                  width: (ethBalanceOfContract * 100) / TOTAL_ETH_AMOUNT,
+                }}
               />
             </div>
             <div className="w-full flex items-center justify-between text-[12px] font-bold text-gray-700">
@@ -261,7 +268,7 @@ const Detail = () => {
             $ZOINK Token Roadmap
           </h1>
           <p className="text-[15px] mt-4">
-            <strong className="text-[16px]">
+            <strong className="text-[16px] text-gray-800">
               {` ✅ Phase 1: Launch Preparation Finalize Tokenomics:`}
               <br />
             </strong>
@@ -271,7 +278,7 @@ const Detail = () => {
               exclusively on our Twitter account.`}
           </p>
           <p className="text-[15px] mt-2">
-            <strong className="text-[16px]">
+            <strong className="text-[16px] text-gray-800">
               {`✅ Phase 2: Presale Kickoff Presale Duration:`}
               <br />
             </strong>
@@ -281,7 +288,7 @@ const Detail = () => {
               social media campaigns.`}
           </p>
           <p className="text-[15px] mt-2">
-            <strong className="text-[16px]">
+            <strong className="text-[16px] text-gray-800">
               {`✅ Phase 3: Post-Presale Actions
               Token Distribution: `}
               <br />
@@ -291,7 +298,7 @@ const Detail = () => {
               Burn Unsold Tokens: Burn any unsold tokens from the presale to maintain value for early adopters.`}
           </p>
           <p className="text-[15px] mt-2">
-            <strong className="text-[16px]">
+            <strong className="text-[16px] text-gray-800">
               {`✅ Phase 4: Airdrop & Community Building
               Airdrop Snapshot: `}
               <br />
