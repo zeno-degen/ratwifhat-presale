@@ -11,6 +11,7 @@ import { useRate } from "../../hooks/use-Rat";
 import { GetTokenDataContext } from "../../contexts/TokenDataContext";
 import Link from "next/link";
 import {
+  PRESALE_ENDED_TIME,
   SITE_LINK,
   TELEGRAM_LINK,
   TOTAL_ETH_AMOUNT,
@@ -109,6 +110,8 @@ const Detail = () => {
     }
   };
 
+  console.log("isClaimable", isClaimable);
+
   return (
     <>
       <div className="w-full flex flex-col md:flex-row items-start justify-center gap-[30px]">
@@ -118,7 +121,7 @@ const Detail = () => {
           rounded-lg"
           >
             <div className="break-words font-semibold text-[16px]">
-              <div>The users can claim after presale!</div>
+              <div>The users can claim {!isClaimable && "after presale!"}</div>
             </div>
           </div>
           <div className="w-full bg-white min-h-[20vh] rounded-lg p-4 flex flex-col gap-2 bg-opacity-30 relative">
@@ -128,7 +131,7 @@ const Detail = () => {
               alt=""
             />
             <div>
-              <Countdown timestamp={1711992869 * 1000} />
+              <Countdown timestamp={PRESALE_ENDED_TIME * 1000} />
             </div>
             <div className="relative w-full bg-gray-200 rounded-full mt-5">
               <div
