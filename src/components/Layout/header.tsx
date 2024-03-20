@@ -12,12 +12,12 @@ const Header = () => {
         <div className="xl:w-[1200px] w-auto flex items-center justify-between px-3">
           <div className="flex items-center justify-center top-[24px] p-1 gap-3">
             <img
-              src="/imgs/logo.png"
+              src="/imgs/logo.jpg"
               className="w-[45px] h-[45px] border-black rounded-full "
               alt=""
             />
-            <p className="uppercase text-black text-opacity-80 font-extrabold text-[15px]">
-              RatWifHat
+            <p className="uppercase text-black text-opacity-80 font-extrabold text-[17px]">
+              {`$ZOINK`}
             </p>
           </div>
           <WalletConnectBtn />
